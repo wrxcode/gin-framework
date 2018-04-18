@@ -18,6 +18,14 @@
 			"notests": true
 		},
 		{
+			"importpath": "github.com/TV4/graceful",
+			"repository": "https://github.com/TV4/graceful",
+			"vcs": "git",
+			"revision": "38c3c4980bed6ed0aac95529c2cded4986e0e2a8",
+			"branch": "master",
+			"notests": true
+		},
+		{
 			"importpath": "github.com/andybalholm/cascadia",
 			"repository": "https://github.com/andybalholm/cascadia",
 			"vcs": "git",

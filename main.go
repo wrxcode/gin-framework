@@ -2,35 +2,25 @@ package main
 
 import (
 	"flag"
-
 	"github.com/shiyicode/gin-framework/common"
 	"github.com/shiyicode/gin-framework/router"
+	"github.com/TV4/graceful"
+	"net/http"
+	"github.com/shiyicode/gin-framework/common/g"
+	"fmt"
 )
 
-//func rootHandler(context *gin.Context) {
-//	context.JSON(http.StatusOK, gin.H{
-//		"Hello": "world",
-//	})
-//	// logrus.SetFormatter()
-//	context.JSON(200, gin.H{"token": "aaa"})
-//}
-
 func main() {
-	//version := flag.Bool("v", false, "show version")
 	cfgFile := flag.String("c", "cfg/cfg.toml.debug", "set config file")
 	flag.Parse()
 
 	common.Init(*cfgFile)
+	defer common.Close()
 
 	router := router.GetRouter()
 
-	//gin.Logger()
-	//router.Use(cors.Default())
-	////修订中间件：显示版本信息在RespHeader
-	//router.Use(revision.Middleware())
-	////限制最大请求并发量
-	//router.Use(limit.MaxAllowed(20))
-	//router.Use(ginrus.Ginrus(logrus.StandardLogger(), time.RFC3339, true))
-
-	router.Run(":" + "8000")
+	graceful.LogListenAndServe(&http.Server{
+		Addr:    fmt.Sprintf(":%d", g.Conf().Run.HTTPPort),
+		Handler: router,
+	})
 }
