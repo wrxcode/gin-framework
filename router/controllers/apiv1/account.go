@@ -7,7 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/shiyicode/gin-framework/managers"
 	"github.com/shiyicode/gin-framework/models"
-	"github.com/shiyicode/gin-framework/router/controllers/base-controller"
+	"github.com/shiyicode/gin-framework/router/controllers/base"
 )
 
 func RegisterAccount(router *gin.RouterGroup) {
@@ -22,7 +22,7 @@ func httpHandlerLogin(c *gin.Context) {
 		panic(err)
 	}
 	if flag, token, mess := managers.AccountLogin(account.Email, account.Password); flag == false {
-		c.JSON(http.StatusOK, (&basecontroller.Base{}).Fail(mess))
+		c.JSON(http.StatusOK, base.Fail(mess))
 	} else {
 		cookie := &http.Cookie{
 			Name:     "token",
@@ -31,7 +31,7 @@ func httpHandlerLogin(c *gin.Context) {
 			HttpOnly: true,
 		}
 		http.SetCookie(c.Writer, cookie)
-		c.JSON(http.StatusOK, (&basecontroller.Base{}).Success())
+		c.JSON(http.StatusOK, base.Success())
 	}
 }
 
@@ -42,8 +42,8 @@ func httpHandlerRegister(c *gin.Context) {
 		panic(err)
 	}
 	if flag, userId, mess := managers.AccountRegister(account.Email, account.Password); flag == false {
-		c.JSON(http.StatusOK, (&basecontroller.Base{}).Fail(mess))
+		c.JSON(http.StatusOK, base.Fail(mess))
 	} else {
-		c.JSON(http.StatusOK, (&basecontroller.Base{}).Success(userId))
+		c.JSON(http.StatusOK, base.Success(userId))
 	}
 }

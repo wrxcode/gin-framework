@@ -3,6 +3,8 @@ package main
 import (
 	"flag"
 	"fmt"
+	_ "github.com/go-sql-driver/mysql"
+
 	"github.com/TV4/graceful"
 	"github.com/shiyicode/gin-framework/common"
 	"github.com/shiyicode/gin-framework/common/g"
