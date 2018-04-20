@@ -2,12 +2,12 @@ package main
 
 import (
 	"flag"
-	"github.com/shiyicode/gin-framework/common"
-	"github.com/shiyicode/gin-framework/router"
-	"github.com/TV4/graceful"
-	"net/http"
-	"github.com/shiyicode/gin-framework/common/g"
 	"fmt"
+	"github.com/TV4/graceful"
+	"github.com/shiyicode/gin-framework/common"
+	"github.com/shiyicode/gin-framework/common/g"
+	"github.com/shiyicode/gin-framework/router"
+	"net/http"
 )
 
 func main() {

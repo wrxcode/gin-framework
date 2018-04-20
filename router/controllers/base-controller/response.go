@@ -1,4 +1,4 @@
-package baseController
+package basecontroller
 
 type HttpResponse struct {
 	Code int         `json:"code"`

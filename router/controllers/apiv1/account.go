@@ -6,7 +6,8 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/shiyicode/gin-framework/managers"
-	"github.com/shiyicode/gin-framework/router/controllers/baseController"
+	"github.com/shiyicode/gin-framework/models"
+	"github.com/shiyicode/gin-framework/router/controllers/base-controller"
 )
 
 func RegisterAccount(router *gin.RouterGroup) {
@@ -15,10 +16,13 @@ func RegisterAccount(router *gin.RouterGroup) {
 }
 
 func httpHandlerLogin(c *gin.Context) {
-	email := c.PostForm("email")
-	password := c.PostForm("password")
-	if flag, token, mess := managers.AccountLogin(email, password); flag == false {
-		c.JSON(http.StatusOK, (&baseController.Base{}).Fail(mess))
+	account := models.Account{}
+	err := c.Bind(&account)
+	if err != nil {
+		panic(err)
+	}
+	if flag, token, mess := managers.AccountLogin(account.Email, account.Password); flag == false {
+		c.JSON(http.StatusOK, (&basecontroller.Base{}).Fail(mess))
 	} else {
 		cookie := &http.Cookie{
 			Name:     "token",
@@ -27,16 +31,19 @@ func httpHandlerLogin(c *gin.Context) {
 			HttpOnly: true,
 		}
 		http.SetCookie(c.Writer, cookie)
-		c.JSON(http.StatusOK, (&baseController.Base{}).Success())
+		c.JSON(http.StatusOK, (&basecontroller.Base{}).Success())
 	}
 }
 
 func httpHandlerRegister(c *gin.Context) {
-	email := c.PostForm("email")
-	password := c.PostForm("password")
-	if flag, userId, mess := managers.AccountRegister(email, password); flag == false {
-		c.JSON(http.StatusOK, (&baseController.Base{}).Fail(mess))
+	account := models.Account{}
+	err := c.Bind(&account)
+	if err != nil {
+		panic(err)
+	}
+	if flag, userId, mess := managers.AccountRegister(account.Email, account.Password); flag == false {
+		c.JSON(http.StatusOK, (&basecontroller.Base{}).Fail(mess))
 	} else {
-		c.JSON(http.StatusOK, (&baseController.Base{}).Success(userId))
+		c.JSON(http.StatusOK, (&basecontroller.Base{}).Success(userId))
 	}
 }
