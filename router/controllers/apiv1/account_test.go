@@ -3,13 +3,12 @@ package apiv1
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/shiyicode/gin-framework/router/controllers/base"
+	"github.com/stretchr/testify/assert"
 	"io/ioutil"
 	"net/http"
 	"strings"
 	"testing"
-
-	"github.com/shiyicode/gin-framework/router/controllers/base"
-	"github.com/stretchr/testify/assert"
 )
 
 func TestLogin(t *testing.T) {
