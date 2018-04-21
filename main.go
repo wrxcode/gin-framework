@@ -3,13 +3,13 @@ package main
 import (
 	"flag"
 	"fmt"
-	_ "github.com/go-sql-driver/mysql"
+	"net/http"
 
 	"github.com/TV4/graceful"
+	_ "github.com/go-sql-driver/mysql"
 	"github.com/shiyicode/gin-framework/common"
 	"github.com/shiyicode/gin-framework/common/g"
 	"github.com/shiyicode/gin-framework/router"
-	"net/http"
 )
 
 func main() {

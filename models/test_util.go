@@ -1,8 +1,9 @@
 package models
 
 import (
-	"github.com/shiyicode/gin-framework/common"
 	"sync"
+
+	"github.com/shiyicode/gin-framework/common"
 )
 
 var once sync.Once
