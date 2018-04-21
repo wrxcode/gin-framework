@@ -25,6 +25,6 @@ func Auth() gin.HandlerFunc {
 				c.Next()
 			}
 		}
-		c.AbortWithStatusJSON(http.StatusForbidden, base.Fail("authv1 failure"))
+		c.AbortWithStatusJSON(http.StatusForbidden, base.Fail("auth failure."))
 	}
 }
