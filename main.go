@@ -25,4 +25,6 @@ func main() {
 		Addr:    fmt.Sprintf(":%d", g.Conf().Run.HTTPPort),
 		Handler: router,
 	})
+
+	common.Close()
 }
