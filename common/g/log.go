@@ -49,7 +49,7 @@ func GetLogWriter(logPath string, logFileName string, maxAge time.Duration, rota
 	path := path.Join(getCurrPath(), logPath, logFileName)
 
 	writer, err := rotatelogs.New(
-		path+".%Y%m%d%H.log",
+		path+".%Y%m%d.log",
 		rotatelogs.WithLinkName(path),
 		rotatelogs.WithMaxAge(maxAge*24*time.Hour),
 		rotatelogs.WithRotationTime(rotationTime*24*time.Hour),
