@@ -3,7 +3,7 @@
 workspace=$(cd $(dirname $0) && pwd -P)
 cd $workspace
 
-app="gin-framework"
+app=gin-framework
 cfg=./cfg
 
 function build() {
